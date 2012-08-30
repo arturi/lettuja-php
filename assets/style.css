@@ -1,0 +1,176 @@
+/* reset */
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+  border: 0;
+  background: transparent;
+  vertical-align: baseline;
+  font-size: 100%; }
+
+body {
+  line-height: 1; }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+nav ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: none; }
+
+a {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  vertical-align: baseline;
+  font-size: 100%; }
+
+ins {
+  background-color: #ff9;
+  color: #000;
+  text-decoration: none; }
+
+mark {
+  background-color: #ff9;
+  color: #000;
+  font-weight: bold;
+  font-style: italic; }
+
+del {
+  text-decoration: line-through; }
+
+abbr[title], dfn[title] {
+  border-bottom: 1px dotted;
+  cursor: help; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+hr {
+  display: block;
+  margin: 1em 0;
+  padding: 0;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc; }
+
+input, select {
+  vertical-align: middle; }
+
+/* general */
+body {
+  margin: auto;
+  width: 75%;
+  max-width: 900px;
+  background-color: white;
+  word-wrap: break-word;
+  font-size: 100%;
+  text-rendering: optimizeLegibility; }
+
+.top {
+  margin-top: 2.5em;
+  /* 40 / 16 */
+  margin-bottom: 4.375em;
+  /* 70 / 16 */
+  text-align: center; }
+  .top h1 {
+    font-weight: normal;
+    font-size: 1.1em;
+    line-height: 1.1em;
+    font-family: 'PT Serif', sans-serif;
+    display: inline-block;
+    vertical-align: middle; }
+  .top menu {
+    margin-top: 1.25em; }
+    .top menu a {
+      border-bottom: 1px solid #c6c6c6;
+      color: #000;
+      text-decoration: none; }
+    .top menu a:hover {
+      border-bottom: 1px solid #000; }
+    .top menu li {
+      display: inline-block;
+      margin: 0 0.625em 0.9375em 0.625em;
+      /* 10 / 16, 15 / 16 */
+      font-size: 1.063em; }
+
+img.avatar {
+  width: 70px;
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  -ms-border-radius: 60px;
+  -o-border-radius: 60px;
+  border-radius: 60px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 1em; }
+
+.posts article {
+  margin-bottom: 5em;
+  /* 80 / 16 */
+  font-family: 'PT Serif', Sans-serif;
+  font-size: 1.0625em;
+  /* 17 / 16 */
+  line-height: 1.65em;
+  /* 33 / 20 */ }
+  .posts article a {
+    color: #23297d; }
+  .posts article a:visited {
+    color: #561774; }
+  .posts article header {
+    text-align: center;
+    font-family: PermianSerifTypeface, 'PT Serif'; }
+    .posts article header h2 {
+      color: #000;
+      font-weight: normal;
+      /*font-family: PermianSansTypeface, 'PT Sans', Sans-serif;*/
+      font-size: 1.5em;
+      /* 30 / 20 */
+      line-height: 1.315em;
+      /* 25 / 19 */ }
+      .posts article header h2 a, .posts article header h2 a:visited {
+        border: 0;
+        color: #000;
+        text-decoration: none; }
+    .posts article header time {
+      display: block;
+      color: #666;
+      font-size: 0.65em;
+      /* 12 / 19 */
+      line-height: 1.789em;
+      /* 34 / 19  */ }
+  .posts article img {
+    display: block;
+    margin-top: 0.7em;
+    max-width: 100%;
+    /*margin: auto;*/
+    /* center all post images */ }
+  .posts article h3 {
+    text-align: center;
+    font-size: 1.25em;
+    /* 25 / 20 */ }
+
+p {
+  margin: 1.1em 0 1.1em 0;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto; }
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  .avatar {
+    /* background: url('arthat_@2x.jpg') no-repeat; */
+    /* background-size: 120px 120px; */ } }
+@media only screen and (max-width: 1000px) {
+  body {
+    width: 80%;
+    font-size: 80%; } }
+@media only screen and (max-width: 480px) {
+  body {
+    width: 90%;
+    font-size: 80%; } }
