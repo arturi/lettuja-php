@@ -40,7 +40,7 @@ $file_names_array = glob("array/*.md");
 	foreach ($file_names_array as $file_name) {
 		parse_post_array($file_name);
 		
-		$posts[] = array('date' => $post_data['date_source'], 'name' => basename($file_name,'.md'));
+		$posts[] = array('date' => $post_data['date_source'], 'slug' => basename($file_name,'.md'));
 	}
 	
 	function sortByDate($a, $b) {
