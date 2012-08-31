@@ -6,6 +6,35 @@ $time_start = microtime(true);
 include_once "markdown.php";
 include_once "variables.php";
 
+function sortByDate($a, $b) {
+    return $a['date'] - $b['date'];
+}
+
+function post_sorting_data($arg) {
+		$sorting_data = array();
+		global $sorting_data;
+	
+		$fileContent = file_get_contents($arg);
+		$sorting_data['slug'] = basename($arg,'.md');
+		$sorting_data['path'] = $arg;
+		 	  
+		$meta_and_body = explode("\n\n", $fileContent, 2);
+		$meta_data = explode("\n", $meta_and_body[0]);
+		
+		foreach ($meta_data as $meta_data_item) {
+			$meta_data_item = explode(":", $meta_data_item, 2);
+			
+			$key_name = strtolower($meta_data_item[0]);
+			$key_value = trim($meta_data_item[1]);
+			
+			if ($key_name == 'date') {
+				$sorting_data['raw_date'] = $key_value;
+				}
+	
+		}
+	
+}
+
 function parse_post_array($arg) {
 		global $site_url;
 		global $lang_path;
@@ -28,6 +57,8 @@ function parse_post_array($arg) {
 			
 			if ($key_name == 'title') {
 				$post_data['title'] = $key_value;
+			} elseif ($key_name == 'date') {
+				$post_data['raw_date'] = $key_value;
 			} elseif ($key_name == 'tags') {
 				$post_data['tags'] = $key_value;
 			} elseif ($key_name == 'rss') {
@@ -36,31 +67,19 @@ function parse_post_array($arg) {
 	
 		}
 		
-		$post_data['slug'] = substr(basename($arg,".md"), 17);
+		$post_data['slug'] = basename($arg,".md");
 		$post_data['url'] = $site_url.$lang_path.$post_data['slug'];
-		$post_data['date_source'] = substr(basename($arg,".md"),0,16);
 
-		$date_array = explode('-', $post_data['date_source']);
-		$year = $date_array[0];
-		$month = $date_array[1];
-		$day = $date_array[2];
-		$hour = $date_array[3];
-		$minute = $date_array[4];
-		$date_timestamp = mktime($hour, $minute, 0, $month, $day, $year);
-
-//		$post_data['atom_date'] = date('D, d M o G:i:s T', $date_timestamp);
-
-		$post_data['timestamp'] = $date_timestamp;
+		$post_data['timestamp'] = strtotime($post_data['raw_date']);
 		
 		if ($lang_slug == 'en') {
-			$post_data['date'] = strftime("%B %e, %G", $date_timestamp); // July 2, 2012
+			$post_data['date'] = strftime("%B %e, %G", $post_data['timestamp']); // July 2, 2012
 		}else{
-			$post_data['date'] = strftime("%e %B %G", $date_timestamp); // 2 July 2012
+			$post_data['date'] = strftime("%e %B %G", $post_data['timestamp']); // 2 July 2012
 		}
-		$post_data['simple_date'] = $day.'.'.$month.'.'.$year; // 02.07.2012
-
-		$post_data['atom_date'] = date(DATE_ATOM, $date_timestamp);
-		$post_data['iso_timestamp'] = date('c', $date_timestamp);
+		
+		$post_data['atom_date'] = date(DATE_ATOM, $post_data['timestamp']);
+		$post_data['iso_timestamp'] = date('c', $post_data['timestamp']);
 		
 		$post_data['body'] = $meta_and_body[1];
 		$post_data['body_parsed'] = Markdown($post_data['body']);
@@ -92,13 +111,24 @@ if ($lang_slug == $default_language) {
 }
   
 
-//place all file names into array and sort it by filename which is a creation date and time
+//place all file names into array, then extract date from each post to form another array and then sort it by date 
+
 	$file_names = glob($dir_name.'/*.md');
-	natsort($file_names);
-	$file_names = array_reverse($file_names);
+	$sorted_post_list = null;
+		
+		foreach ($file_names as $file_name) {
+			post_sorting_data($file_name);
+			
+			$sorted_post_list[] = array('date' => $sorting_data['raw_date'], 'path' => $sorting_data['path']);
+		}
+		
+	usort($sorted_post_list, 'sortByDate');
+	$sorted_post_list = array_reverse($sorted_post_list);
+	
 	
 //slice the file_names array to limit the number of posts on the main page
-	$mainpage_array = array_slice($file_names, 0, $main_page_posts_limit);
+
+	$sorted_post_list_limited = array_slice($sorted_post_list, 0, $main_page_posts_limit);
 
 	//write single post files
 	include 'templates/single.php';

@@ -1,4 +1,5 @@
 Title: Африка: Морокко
+Date: 2011-04-14 16:10
 
 <img src="http://img-fotki.yandex.ru/get/5600/arturpaikin.e/0_55f57_e7526b7a_XL">
 

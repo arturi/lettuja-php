@@ -1,4 +1,5 @@
 Title: Париж, Ницца, Канны, Монако, Барселона
+Date: 2010-09-02 14:13
 Tags: travel
 
 <img src="http://img-fotki.yandex.ru/get/4801/arturpaikin.2/0_3c03d_fe27ac33_XL" />

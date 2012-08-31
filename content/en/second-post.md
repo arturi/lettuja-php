@@ -1,5 +1,5 @@
 Title: Second post
-Slug: second-post
+Date: 2012-07-05 11:21
 Tag: china
 
 This is it!

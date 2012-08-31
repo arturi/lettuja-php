@@ -1,4 +1,5 @@
 Title: Финляндия—Швеция 2009
+Date: 2009-03-13 21:19
 Tags: travel
 Rss: no
 

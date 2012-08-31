@@ -3,8 +3,8 @@ include 'templates/header.php'; ?>
 
 <ul>
 
-<?php foreach ($file_names as $file) {
-	parse_post_array($file); ?>
+<?php foreach ($sorted_post_list as $item) {
+	parse_post_array($item['path']); ?>
 <li>
 <a href="<?php echo $post_data['slug'] ?>"><?php echo $post_data['title'] ?></a>
 </li>

@@ -1,5 +1,5 @@
-<? foreach ($file_names as $file) {
-	parse_post_array($file);
+<? foreach ($sorted_post_list as $item) {
+	parse_post_array($item['path']);
 	
 ob_start(); 
 $page_type = 'single';

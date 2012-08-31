@@ -4,8 +4,8 @@ include 'templates/header.php';
 ?>
 
 <section class="posts">
-	<?php foreach($mainpage_array as $file): ?>
-		<? parse_post_array($file); ?>
+	<?php foreach($sorted_post_list_limited as $item): ?>
+		<? parse_post_array($item['path']); ?>
 
 		<article>
 			<header>
