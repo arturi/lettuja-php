@@ -1,5 +1,5 @@
 Title: Новый год в Германии
-Date: 2011-07-07-17-29
+Date: 2011-07-07 17:29
 Tags: travel
 
 <img src="http://img-fotki.yandex.ru/get/5211/arturpaikin.10/0_6e7cd_f00b1a8e_XL">

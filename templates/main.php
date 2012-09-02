@@ -5,18 +5,18 @@ include 'templates/header.php';
 
 <section class="posts">
 	<?php foreach($sorted_post_list_limited as $item): ?>
-		<? parse_post_array($item['path']); ?>
+		<? get_post_content($item['path']); ?>
 
 		<article>
 			<header>
-			<h2><a href="<?=$post_data['slug'] ?>"><?php echo $post_data['title'] ?></a></h2>
-			<time datetime="<?=$post_data['iso_timestamp'] ?>"><?php echo $post_data['date'] ?></time>
+			<h2><a href="<?=$item['slug'] ?>"><?php echo $item['title'] ?></a></h2>
+			<time datetime="<?=$item['iso_timestamp'] ?>"><?php echo $item['date'] ?></time>
 		</header>
-		<? if ($post_data['body_before_cut'] !== NULL) {
-			 echo $post_data['body_before_cut'];
-			 echo '<a class="cut-link" href="'.$post_data['url'].'">'.${$lang_array}['read_more'].' →</a>';
+		<? if (isset($post_cut[1])) {
+			 echo $post_content['body_before_cut'];
+			 echo '<a class="cut-link" href="'.$item['url'].'">'.${$lang_array}['read_more'].' →</a>';
 		} else {
-			echo $post_data['body_parsed'];
+			echo $post_content['body_parsed'];
 		} ?>
 		</article>
 	

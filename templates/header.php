@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <link rel="alternate" type="application/rss+xml" title="RSS" href="<?= $site_url.$lang_path.'feed.xml' ?>" />
+        <!--<link rel="alternate" type="application/rss+xml" title="RSS" href="<?= $site_url.$lang_path.'feed.xml' ?>" />-->
         <link rel="shortcut icon" href="assets/favicon.png">
         <meta name="viewport" content="width=device-width">
         <!--[if IE]>
@@ -16,7 +16,7 @@
         <? if ($page_type == 'main') {
         	echo ${$lang_array}['blog_header'];
         } else {
-        echo $post_data['title'].' — '.${$lang_array}['blog_header']; } ?>
+        echo $item['title'].' — '.${$lang_array}['blog_header']; } ?>
         </title>
     </head>
     <!-- livereload.app stuff -->
@@ -27,10 +27,10 @@
     
     <header class="top">
     		<img class="avatar" src="<?= $site_url ?>/assets/arthat_square_2x.jpg">
-	    	<h1><?=${$lang_array}['blog_header'] ?></h1>
-	    	<!-- <menu>
-	    		<ul>
-	    			<?=${$lang_array}['menu_items'] ?>
-	    		</ul>
-	    	</menu> -->
+    		
+    		<? if ($page_type == 'main'): ?>
+    			<h1><?=${$lang_array}['blog_header'] ?></h1>
+    		<? else: ?>
+    			<h1><a href="<?= $site_url ?>"><?=${$lang_array}['blog_header'] ?></a></h1>
+	    	<? endif ?>
     </header>

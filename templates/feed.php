@@ -1,6 +1,6 @@
 <?php
 
-//parse_post_array($sorted_post_list_limited[0]);
+//get_post_content($sorted_post_list_limited[0]);
 
 $atom_feed = '<?xml version="1.0" encoding="utf-8"?>';
 $atom_feed .= '<feed xmlns="http://www.w3.org/2005/Atom">';
@@ -12,7 +12,7 @@ $atom_feed .= '<id>'.$site_url.'</id>';
 $atom_feed .= '<author><name>'.${$lang_array}['author_name'].'</name></author>';
 
 foreach ($sorted_post_list_limited as $item) {
-	parse_post_array($item['path']);
+	get_post_content($item['path']);
 	
 	if ($post_data['rss'] !== 'no') {
 	

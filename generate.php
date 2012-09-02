@@ -5,95 +5,13 @@ $time_start = microtime(true);
 
 include_once "markdown.php";
 include_once "variables.php";
-
-function sortByDate($a, $b) {
-    return $a['date'] - $b['date'];
-}
-
-function post_sorting_data($arg) {
-		$sorting_data = array();
-		global $sorting_data;
-	
-		$fileContent = file_get_contents($arg);
-		$sorting_data['slug'] = basename($arg,'.md');
-		$sorting_data['path'] = $arg;
-		 	  
-		$meta_and_body = explode("\n\n", $fileContent, 2);
-		$meta_data = explode("\n", $meta_and_body[0]);
-		
-		foreach ($meta_data as $meta_data_item) {
-			$meta_data_item = explode(":", $meta_data_item, 2);
-			
-			$key_name = strtolower($meta_data_item[0]);
-			$key_value = trim($meta_data_item[1]);
-			
-			if ($key_name == 'date') {
-				$sorting_data['raw_date'] = $key_value;
-				}
-	
-		}
-	
-}
-
-function parse_post_array($arg) {
-		global $site_url;
-		global $lang_path;
-		$post_data = array();
-		global $post_data;
-		global $lang_slug;
-		$post_data['rss'] = '';
-	
-		$fileContent = file_get_contents($arg);
-		$fileName = basename($arg,'.md');
-		 	  
-		$meta_and_body = explode("\n\n", $fileContent, 2);
-		$meta_data = explode("\n", $meta_and_body[0]);
-		
-		foreach ($meta_data as $meta_data_item) {
-			$meta_data_item = explode(":", $meta_data_item, 2);
-			
-			$key_name = strtolower($meta_data_item[0]);
-			$key_value = trim($meta_data_item[1]);
-			
-			if ($key_name == 'title') {
-				$post_data['title'] = $key_value;
-			} elseif ($key_name == 'date') {
-				$post_data['raw_date'] = $key_value;
-			} elseif ($key_name == 'tags') {
-				$post_data['tags'] = $key_value;
-			} elseif ($key_name == 'rss') {
-				$post_data['rss'] = trim($key_value);
-			}
-	
-		}
-		
-		$post_data['slug'] = basename($arg,".md");
-		$post_data['url'] = $site_url.$lang_path.$post_data['slug'];
-
-		$post_data['timestamp'] = strtotime($post_data['raw_date']);
-		
-		if ($lang_slug == 'en') {
-			$post_data['date'] = strftime("%B %e, %G", $post_data['timestamp']); // July 2, 2012
-		}else{
-			$post_data['date'] = strftime("%e %B %G", $post_data['timestamp']); // 2 July 2012
-		}
-		
-		$post_data['atom_date'] = date(DATE_ATOM, $post_data['timestamp']);
-		$post_data['iso_timestamp'] = date('c', $post_data['timestamp']);
-		
-		$post_data['body'] = $meta_and_body[1];
-		$post_data['body_parsed'] = Markdown($post_data['body']);
-		
-		$post_cut = explode('<!--more-->', $post_data['body_parsed']);
-		$post_data['body_before_cut'] = $post_cut[0];
-	
-}
+include_once "functions.php";
 
 //loop through all directories and put them into array as language slugs, like 'en' or 'ru'
 $dir_names = glob($content_directory.'/*', GLOB_ONLYDIR);
 foreach ($dir_names as $dir_name) {
 
-$lang_slug = basename($dir_name, $content_directory.'content/');
+$lang_slug = basename($dir_name, $content_directory);
 
 // $lang_array is a name of language array, constructed from the name 'lang_' and the actual lang slug at the end. used in templates.
 $lang_array = 'lang_'.$lang_slug;
@@ -111,23 +29,31 @@ if ($lang_slug == $default_language) {
 }
   
 
-//place all file names into array, then extract date from each post to form another array and then sort it by date 
-
+	//place all file names into array, then extract date from each post to form another array and then sort it by date 
 	$file_names = glob($dir_name.'/*.md');
 	$sorted_post_list = null;
 		
+		//get metadata like title and date from each file
 		foreach ($file_names as $file_name) {
-			post_sorting_data($file_name);
+			get_post_metadata($file_name);
 			
-			$sorted_post_list[] = array('date' => $sorting_data['raw_date'], 'path' => $sorting_data['path']);
-		}
+			//put each metadata item into $meta_array
+			foreach ($post_metadata as $metadata_item => $metadata_item_value) {
+				 $meta_array[$metadata_item] = $metadata_item_value;
+			}
+			
+			//put each $meta_array into sorted_post_list array
+			$sorted_post_list[] = $meta_array;
+			
+//			$sorted_post_list[] = array('timestamp' => $post_metadata['timestamp'], 'raw_date' => $post_metadata['raw_date'], 'date' => $post_metadata['date'], 'date_modified' => $post_metadata['date_modified'], 'path' => $post_metadata['path'], 'url' => $post_metadata['url'], 'slug' => $post_metadata['slug'], 'title' => $post_metadata['title']);
+
+			}
 		
-	usort($sorted_post_list, 'sortByDate');
+		
+	usort($sorted_post_list, 'sortByTimestamp');
 	$sorted_post_list = array_reverse($sorted_post_list);
 	
-	
-//slice the file_names array to limit the number of posts on the main page
-
+	//slice the file_names array to limit the number of posts on the main page
 	$sorted_post_list_limited = array_slice($sorted_post_list, 0, $main_page_posts_limit);
 
 	//write single post files

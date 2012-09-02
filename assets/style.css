@@ -86,6 +86,10 @@ body {
     font-family: 'PT Serif', sans-serif;
     display: inline-block;
     vertical-align: middle; }
+  .top h1 a {
+    color: #000; }
+  .top h1 a:hover {
+    color: #000; }
   .top menu {
     margin-top: 1.25em; }
     .top menu a {
@@ -109,7 +113,12 @@ img.avatar {
   border-radius: 60px;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 1em; }
+  margin-right: 1em;
+  -webkit-transition: all 0.01s ease-in-out; }
+
+img.avatar:hover {
+  /*-webkit-filter: brightness(15%) grayscale(80%);*/
+  opacity: 0.8; }
 
 .posts article {
   margin-bottom: 5em;
