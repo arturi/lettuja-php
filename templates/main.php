@@ -22,6 +22,7 @@ include 'templates/header.php';
 	
 	<?php endforeach; ?>
 </section>
+<a href="<?= $site_url.$lang_path.'archive' ?>"><?= ${$lang_array}['archive']; ?></a>
 
 <?php 
 include 'templates/footer.php';

@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <!--<link rel="alternate" type="application/rss+xml" title="RSS" href="<?= $site_url.$lang_path.'feed.xml' ?>" />-->
+        <link rel="alternate" type="application/rss+xml" title="RSS" href="<?= $site_url.$lang_path.'feed.xml' ?>" />
         <link rel="shortcut icon" href="assets/favicon.png">
         <meta name="viewport" content="width=device-width">
         <!--[if IE]>

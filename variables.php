@@ -13,7 +13,11 @@ $lang_ru = array(
     
     "author_name" => 'Артур Пайкин',
     
+    "blog_description" => 'Блог Артура Пайкина',
+    
     "read_more" => 'Читать',
+    
+    "archive" => 'Архив',
     
     "menu_items" => '<li><a href="1">Путешествия</a></li>
     <li><a href="1">Проекты</a></li>
@@ -25,9 +29,13 @@ $lang_ru = array(
 $lang_en = array(
     "blog_header" => 'Artur Paikin',
     
-    "author_name" => 'Артур Пайкин',
+    "author_name" => 'Artur Paikin',
+    
+    "blog_description" => 'Artur Paikin’s Blog',
     
     "read_more" => 'Read',
+    
+    "archive" => 'Archive',
     
     "menu_items" => '<li><a href="1">Travel</a></li>
     <li><a href="1">Projects</a></li>

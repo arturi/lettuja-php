@@ -1,36 +1,53 @@
-<?php
+<? 
+$dom = new DOMDocument('1.0', 'UTF-8');
+$root = $dom->createElement('rss');
+$root->setAttribute('version', '2.0');
+$channel = $dom->createElement('channel');
 
-//get_post_content($sorted_post_list_limited[0]);
+$title_node = $dom->createElement('title');
+$title_node->appendChild($dom->createTextNode(${$lang_array}['blog_header']));
+$channel->appendChild($title_node);
 
-$atom_feed = '<?xml version="1.0" encoding="utf-8"?>';
-$atom_feed .= '<feed xmlns="http://www.w3.org/2005/Atom">';
-$atom_feed .= '<title>'.${$lang_array}['blog_header'].'</title>';
-$atom_feed .= '<link href="'.$site_url.'/feed.xml" rel="self" />';
-$atom_feed .= '<link href="'.$site_url.'" />';
-$atom_feed .= '<updated>'.$post_data['timestamp'].'</updated>';
-$atom_feed .= '<id>'.$site_url.'</id>';
-$atom_feed .= '<author><name>'.${$lang_array}['author_name'].'</name></author>';
+$link_node = $dom->createElement('link');
+$link_node->appendChild($dom->createTextNode($site_url));
+$channel->appendChild($link_node);
 
-foreach ($sorted_post_list_limited as $item) {
+$desc_node = $dom->createElement('description');
+$desc_node->appendChild($dom->createTextNode(${$lang_array}['blog_description']));
+$channel->appendChild($desc_node);
+
+foreach($sorted_post_list_limited as $item) {
 	get_post_content($item['path']);
 	
-	if ($post_data['rss'] !== 'no') {
-	
-	$atom_feed .= '<entry>';
-	$atom_feed .= '<title type="html">'.$post_data['title'].'</title>';
-	$atom_feed .= '<link href="'.$post_data['url'].'"/>';
-	$atom_feed .= '<updated>'.$post_data['atom_date'].'</updated>';
-	$atom_feed .= '<id>'.$post_data['url'].'</id>';
-	$atom_feed .= '<content type="html">'.$post_data['body_parsed'].'</content>';
-	$atom_feed .= '</entry>';	
-	
-	}
- }
+    $item_node = $dom->createElement('item');
 
-$atom_feed .= '</feed>';
+    $title_node = $dom->createElement('title');
+    $title_node->appendChild($dom->createTextNode($item['title']));
+    $item_node->appendChild($title_node);
+    
+    $link_node = $dom->createElement('link');
+    $link_node->appendChild($dom->createTextNode($item['url']));
+    $item_node->appendChild($link_node);
+    
+    $guid = $dom->createElement('guid');
+    $guid->setAttribute('isPermaLink', 'false');
+    $guid->appendChild($dom->createTextNode($item['url']));
+    $item_node->appendChild($guid);
 
-file_put_contents($published_directory.$lang_path.'feed.xml', $atom_feed);
+    $date_node = $dom->createElement('pubDate');
+    $date_node->appendChild($dom->createTextNode($item['atom_date']));
+    $item_node->appendChild($date_node);
+    
+    $desc = $dom->createElement('description');
+    $desc->appendChild($dom->createTextNode($post_content['body_parsed']));
+    $item_node->appendChild($desc);
+    
+    $channel->appendChild($item_node);
+}
 
+$root->appendChild($channel);
+$dom->appendChild($root);
+file_put_contents($published_directory.$lang_path.'feed.xml', $dom->saveXML());
 ?>
 
 

@@ -3,9 +3,9 @@ $body_background: #fff;
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
+  border-radius: $radius;
   -ms-border-radius: $radius;
   -o-border-radius: $radius;
-  border-radius: $radius;
 }
 
 /* reset */
@@ -20,15 +20,16 @@ ins{background-color:#ff9;color:#000;text-decoration:none;}
 mark{background-color:#ff9;color:#000;font-weight:bold;font-style:italic;}
 del{text-decoration:line-through;}
 abbr[title],dfn[title]{border-bottom:1px dotted;cursor:help;}
-table{border-collapse:collapse;border-spacing:0;}
+table{border-spacing:0;border-collapse:collapse;}
 hr{display:block;margin:1em 0;padding:0;height:1px;border:0;border-top:1px solid #ccc;}
 input,select{vertical-align:middle;}
+small {font-size: 80%;}
 
 /* general */
 body {
-	margin: auto;
-	width: 75%;
+	margin: 15px auto;
 	max-width: 900px;
+	width: 75%;
 	background-color: $body_background;
 	word-wrap: break-word;
 	font-size: 100%;
@@ -41,12 +42,12 @@ body {
 	text-align: center;
 	
 	h1 {
-		font-weight: normal;
-		font-size: 1em;
-		line-height: 1.1em;
-		font-family: 'PT Serif', sans-serif;
 		display: inline-block;
 		vertical-align: middle;
+		font-weight: normal;
+		font-size: 1em;
+		font-family: 'PT Serif', sans-serif;
+		line-height: 1.1em;
 	}
 	
 	h1 a {
@@ -81,25 +82,25 @@ body {
 }
 
 img.avatar  {
+	margin-right: 1em;
 	width: 70px;
+	vertical-align: middle;
+	-webkit-transition: all 0.3s ease-in-out;
 	@include border-radius(60px);
 	display: inline-block;
-	vertical-align: middle;
-	margin-right: 1em;
-	-webkit-transition: all 0.01s ease-in-out;
 	
 }
 
 img.avatar:hover {
-	 /*-webkit-filter: brightness(15%) grayscale(80%);*/
 		opacity: 0.8;
+	 /* -webkit-filter: brightness(15%) grayscale(80%); */
 }
 
 .posts {
 	
 	article {
 		margin-bottom: 5em; /* 80 / 16 */
-		font-family: 'PT Serif', Sans-serif;
+		font-family: 'PT Serif', serif;
 		font-size: 1.0625em; /* 17 / 16 */
 		line-height: 1.65em; /* 33 / 20 */
 		
@@ -114,12 +115,11 @@ img.avatar:hover {
 		
 		header {
 			text-align: center;
-			font-family: PermianSerifTypeface, 'PT Serif';
+			font-family: 'PT Serif', serif;
 			
 			h2 {
 				color: #000;
 				font-weight: normal;
-				/*font-family: PermianSansTypeface, 'PT Sans', Sans-serif;*/
 				font-size:  1.5em; /* 30 / 20 */
 				line-height: 1.315em; /* 25 / 19 */
 				
@@ -141,9 +141,9 @@ img.avatar:hover {
 		
 		img {
 			display: block;
+			/* margin: auto; */ /* center all post images */
 			margin-top: 0.7em;
 			max-width: 100%;
-			/*margin: auto;*/ /* center all post images */
 		}
 		
 		h3 {
@@ -160,6 +160,20 @@ p {
 	-webkit-hyphens: auto;
 	-moz-hyphens: auto;
 	hyphens: auto;
+}
+
+.archive-list {
+	list-style: none;
+	
+	li {
+		margin-bottom: 10px;
+		}
+}
+
+.archive-time {
+	margin-left: 10px;
+	color: #9e9c9c;
+	font-size: 70%;
 }
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),

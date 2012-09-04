@@ -1,14 +1,13 @@
 <?php ob_start();
 include 'templates/header.php'; ?>
 
-<ul>
+<ul class="archive-list">
 
-<?php foreach ($sorted_post_list as $item) {
-	get_post_content($item['path']); ?>
+<?php foreach ($sorted_post_list as $item): ?>
 <li>
-<a href="<?php echo $post_data['slug'] ?>"><?php echo $post_data['title'] ?></a>
+<a href="<?= $item['slug'] ?>"><?= $item['title'] ?></a><time class="archive-time" datetime="<?=$item['iso_timestamp'] ?>"><?php echo $item['date'] ?></time>
 </li>
-<?php } ?>
+<?php endforeach; ?>
 
 </ul>
 
