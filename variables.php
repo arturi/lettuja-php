@@ -9,11 +9,15 @@ $main_page_posts_limit = '15';
 $site_url = 'http://192.168.2.104:8888/lettuja';
 
 $lang_ru = array(
-    "blog_header" => 'Артур Пайкин',
+    "site_header" => 'Сайт Артура Пайкина',
+    
+    "blog_header" => 'Блог Артура Пайкина',
     
     "author_name" => 'Артур Пайкин',
     
     "blog_description" => 'Блог Артура Пайкина',
+    
+    "blog" => 'Блог',
     
     "read_more" => 'Читать',
     
@@ -27,11 +31,15 @@ $lang_ru = array(
 );
 
 $lang_en = array(
-    "blog_header" => 'Artur Paikin',
+    "site_header" => 'Artur Paikin’s site',
+    
+    "blog_header" => 'Artur Paikin’s blog', 
     
     "author_name" => 'Artur Paikin',
     
     "blog_description" => 'Artur Paikin’s Blog',
+    
+    "blog" => 'Blog',
     
     "read_more" => 'Read',
     

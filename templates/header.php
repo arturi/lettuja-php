@@ -14,9 +14,9 @@
         <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>-->
         <title>
         <? if ($page_type == 'main') {
-        	echo ${$lang_array}['blog_header'];
+        	echo ${$lang_array}['site_header'];
         } else {
-        echo $item['title'].' — '.${$lang_array}['blog_header']; } ?>
+        echo $item['title'].' — '.${$lang_array}['site_header']; } ?>
         </title>
     </head>
     <!-- livereload.app stuff -->
@@ -29,8 +29,8 @@
     		<img class="avatar" src="<?= $site_url ?>/assets/arthat_square_2x.jpg">
     		
     		<? if ($page_type == 'main'): ?>
-    			<h1><?=${$lang_array}['blog_header'] ?></h1>
+    			<h1><a href="<?= $site_url ?>"><?=${$lang_array}['site_header'] ?></a> — <?= ${$lang_array}['blog'] ?></h1>
     		<? else: ?>
-    			<h1><a href="<?= $site_url ?>"><?=${$lang_array}['blog_header'] ?></a></h1>
+    			<h1><a href="<?= $site_url ?>"><?=${$lang_array}['site_header'] ?></a> — <a href="<?= $site_url ?>"><?= ${$lang_array}['blog'] ?></a> ↓</h1>
 	    	<? endif ?>
     </header>

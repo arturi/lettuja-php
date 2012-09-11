@@ -67,10 +67,15 @@ small {
   font-size: 80%; }
 
 /* general */
+::selection {
+  background: #fff666 !important; }
+
 body {
   margin: 15px auto;
+  /*padding-left: 2em;
+  padding-right: 2em;*/
   max-width: 900px;
-  width: 75%;
+  /*width: 75%;*/
   background-color: white;
   word-wrap: break-word;
   font-size: 100%;
@@ -81,35 +86,45 @@ body {
   /* 40 / 16 */
   margin-bottom: 4.375em;
   /* 70 / 16 */
-  text-align: center; }
+  text-align: center;
+  		                    /*	menu {
+  	margin-top: 1.25em /* 20 / 16 *!/;
+  
+  	a {
+  		border-bottom: 1px solid #c6c6c6;
+  		color: #000;
+  		text-decoration: none;
+  	}
+  	
+  	a:hover {
+  		border-bottom: 1px solid #000;
+  	}
+  	
+  	li {
+  		display: inline-block;
+  		margin: 0 0.625em 0.9375em 0.625em; /* 10 / 16, 15 / 16 *!/
+  		font-size: 1.0625em /* 17 / 16 *!/;
+  	}
+  	
+  }*/ }
   .top h1 {
-    display: inline-block;
+    /*display: inline-block;*/
     vertical-align: middle;
     font-weight: normal;
-    font-size: 1em;
+    font-size: 0.9em;
     font-family: 'PT Serif', sans-serif;
     line-height: 1.1em; }
   .top h1 a {
-    color: #000; }
+    color: #000;
+    text-decoration: none;
+    border-bottom: 1px solid black; }
   .top h1 a:hover {
     color: #000; }
-  .top menu {
-    margin-top: 1.25em; }
-    .top menu a {
-      border-bottom: 1px solid #c6c6c6;
-      color: #000;
-      text-decoration: none; }
-    .top menu a:hover {
-      border-bottom: 1px solid #000; }
-    .top menu li {
-      display: inline-block;
-      margin: 0 0.625em 0.9375em 0.625em;
-      /* 10 / 16, 15 / 16 */
-      font-size: 1.063em; }
 
 img.avatar {
   margin-right: 1em;
-  width: 70px;
+  margin-bottom: 1.7em;
+  width: 80px;
   vertical-align: middle;
   -webkit-transition: all 0.3s ease-in-out;
   -webkit-border-radius: 60px;
@@ -117,7 +132,7 @@ img.avatar {
   border-radius: 60px;
   -ms-border-radius: 60px;
   -o-border-radius: 60px;
-  display: inline-block; }
+  /*display: inline-block;*/ }
 
 img.avatar:hover {
   opacity: 0.8;
@@ -132,7 +147,9 @@ img.avatar:hover {
   line-height: 1.65em;
   /* 33 / 20 */ }
   .posts article a {
-    color: #23297d; }
+    color: #23297d;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(35, 41, 125, 0.4); }
   .posts article a:visited {
     color: #561774; }
   .posts article header {
@@ -187,11 +204,13 @@ p {
   .avatar {
     /* background: url('arthat_@2x.jpg') no-repeat; */
     /* background-size: 120px 120px; */ } }
-@media only screen and (max-width: 1000px) {
+/* smaller screens, tablets, iPad */
+@media only screen and (max-width: 900px) {
   body {
-    width: 80%;
-    font-size: 80%; } }
-@media only screen and (max-width: 480px) {
+    max-width: 620px;
+    font-size: 90%; } }
+/* smartphone-sized screens, iPhone */
+@media only screen and (max-width : 620px) {
   body {
-    width: 90%;
+    max-width: 270px;
     font-size: 80%; } }
