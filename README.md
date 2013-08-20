@@ -1,4 +1,4 @@
 lettuja
 =======
 
-Small static blog generator written in php
+Small static blog generator written in PHP
