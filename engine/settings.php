@@ -8,7 +8,7 @@ $media_directory = '../media';
 $assets_directory = '../assets';
 $default_language = 'ru';
 $main_page_posts_limit = '15';
-$site_url = '/lettuja/output';
+$site_url = '';
 $reserved_names = array('archive', 'index', 'blog');
 
 $lang['ru'] = array(
